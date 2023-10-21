@@ -1,1 +1,91 @@
+#1)
+num=input("enter an integer: ")
+
+
+def factorial(nb1):
+  while(not nb1.isnumeric() or int(nb1)<0):
+    nb1=input("enter an integer:")
+  # if int(nb1)<0:
+  #   while(int(nb1)>=0):
+  #     nb1=input("enter an integer: ")
+  nb1=int(nb1)
+  if(nb1==0):
+      print(1)
+  else:
+      for i in range(nb1-1,0,-1):
+            nb1*=i
+      print(nb1)
+factorial(num)
+print('--------------------------------')
+#2)
+num2=input('enter an integer:')
+
+def divisors(nb2):
+  while(not nb2.isnumeric() ):
+    nb2=input("enter an integer:")
+  nb2=int(nb2)
+  list2=[]
+  for i in range(1,(nb2//2)+1):
+    if(nb2%i==0):
+      list2.append(i)
+  list2.append(nb2)
+  print(list2)
+  
+divisors(num2)
+print('------------------------------------')
+#3)
+txt3=input('enter a text: ')
+
+def reverseString(str3):
+  list3=[]
+  for i in range(len(str3)-1,-1,-1):
+    list3.append(str3[i])
+  reverse=''
+  for i in range(len(list3)):
+    reverse+=list3[i]
+  return reverse
+print(reverseString(txt3))
+print('---------------------------------------')
+#4)
+def list4(c):
+    list3=[]
+    for i in range(len(c)):
+        if int(c[i])%2==0:
+            list3.append(c[i])
+    return list3
+list2 =[]
+a =""
+while a!="stop":
+    a = input("please enter a number :")
+    while not a.isnumeric:
+        a = input("please enter a number or if want to stop enter 'stop' :")
+    if a!="stop":
+        list2.append(a)
+print(list4(list2))
+print('---------------------------------------------')
+#5)
+def strongPass(a):
+  hasLowerLetter=False
+  hasCapitalLetter=False
+  hasDigit=False
+  hasSpecialLetter=False
+  if len(a) < 8:
+      con=False
+  for i in range(len(a)):
+    if 'a'<=a[i]<='z':
+      hasLowerLetter=True
+    if 'A'<=a[i]<='Z':
+      hasCapitalLetter=True
+    if a[i].isnumeric():
+      hasDigit=True
+    if a[i]=='!' or a[i]=='$' or a[i]=='#' or a[i]=='?':
+      hasSpecialLetter=True
+  if(hasLowerLetter and hasCapitalLetter and hasDigit and hasSpecialLetter):
+    return "strong pass"
+  else:
+    return "weak pass"
+x = input("enter a pass :")    
+print(strongPass(x))
+print('---------------------------------------------')
+#6)
 
