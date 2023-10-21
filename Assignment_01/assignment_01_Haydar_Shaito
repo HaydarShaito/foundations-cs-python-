@@ -1,7 +1,5 @@
 #1)
 num=input("enter an integer: ")
-
-
 def factorial(nb1):
   while(not nb1.isnumeric() or int(nb1)<0):
     nb1=input("enter an integer:")
@@ -17,9 +15,9 @@ def factorial(nb1):
       print(nb1)
 factorial(num)
 print('--------------------------------')
+
 #2)
 num2=input('enter an integer:')
-
 def divisors(nb2):
   while(not nb2.isnumeric() ):
     nb2=input("enter an integer:")
@@ -30,9 +28,9 @@ def divisors(nb2):
       list2.append(i)
   list2.append(nb2)
   print(list2)
-  
 divisors(num2)
 print('------------------------------------')
+
 #3)
 txt3=input('enter a text: ')
 
@@ -46,6 +44,7 @@ def reverseString(str3):
   return reverse
 print(reverseString(txt3))
 print('---------------------------------------')
+
 #4)
 def list4(c):
     list3=[]
@@ -63,6 +62,7 @@ while a!="stop":
         list2.append(a)
 print(list4(list2))
 print('---------------------------------------------')
+
 #5)
 def strongPass(a):
   hasLowerLetter=False
@@ -72,9 +72,9 @@ def strongPass(a):
   if len(a) < 8:
       con=False
   for i in range(len(a)):
-    if 'a'<=a[i]<='z':
+    if 'a'<a[i]<'z':
       hasLowerLetter=True
-    if 'A'<=a[i]<='Z':
+    if 'A'<a[i]<'Z':
       hasCapitalLetter=True
     if a[i].isnumeric():
       hasDigit=True
@@ -87,5 +87,50 @@ def strongPass(a):
 x = input("enter a pass :")    
 print(strongPass(x))
 print('---------------------------------------------')
-#6)
 
+#6)
+def isIPv4(str6):
+    # hasNumbers=True
+    # correctNumbers=True
+    # isOctet=True
+    # has3Dots=False
+
+    list6=str6.split('.')
+    if len(list6)!=4:
+        return 'This is not an IPv4'
+    for i in range(len(list6)):
+        if list6[i]=="":
+            return 'This is not an IPv4'
+    for i in range(len(list6)):
+        if not list6[i].isnumeric():
+            #hasNumbers=False
+            return 'This is not an IPv4'
+    #print(hasNumbers)
+    for i in range(len(list6)):
+        if not 0<=int(list6[i])<=255:
+            #correctNumbers=False
+            return 'This is not an IPv4'
+    #print(correctNumbers)
+    for i in range(len(list6)):
+        if len(list6[i])>1:
+            for y in range(0,len(list6[i])-1):
+                if int(list6[i][y])==0 and int(list6[i][y+1])!=0:
+                    #isOctet=False
+                    return 'This is not an IPv4'
+    #print(isOctet)                    
+
+    dots=0
+    for i in range(len(str6)):
+        if str6[i]=='.' and str6[i-1]!='.' and str6[i+1]!='.':
+            dots+=1
+    if dots!=3:
+        #has3Dots=True
+        return 'This is not an IPv4'
+    # print(dots)
+    #print(has3Dots)
+    #if hasNumbers and has3Dots and correctNumbers and isOctet:
+    return ("This is an IPv4")
+    # else:
+    #     return 'This is not an IPv4'
+txt6= input('Enter an IPv4: ')
+print(isIPv4(txt6))
