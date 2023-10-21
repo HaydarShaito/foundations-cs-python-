@@ -65,12 +65,13 @@ print('---------------------------------------------')
 
 #5)
 def strongPass(a):
+  has8OrMore=False
   hasLowerLetter=False
   hasCapitalLetter=False
   hasDigit=False
   hasSpecialLetter=False
   if len(a) < 8:
-      con=False
+      has8OrMore=True
   for i in range(len(a)):
     if 'a'<a[i]<'z':
       hasLowerLetter=True
@@ -80,7 +81,7 @@ def strongPass(a):
       hasDigit=True
     if a[i]=='!' or a[i]=='$' or a[i]=='#' or a[i]=='?':
       hasSpecialLetter=True
-  if(hasLowerLetter and hasCapitalLetter and hasDigit and hasSpecialLetter):
+  if(has8OrMore and hasLowerLetter and hasCapitalLetter and hasDigit and hasSpecialLetter):
     return "strong pass"
   else:
     return "weak pass"
