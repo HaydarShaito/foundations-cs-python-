@@ -52,8 +52,39 @@ def commonMajor(list1):
       if list1[i]["Major"]==list1[j]["Major"]:
         set1.add(list1[i]["Major"])
   return set1
+#-----------------------------------------
+#6)
+def delete_Student(list1,id):
+  for i in range(len(list1)):
+    if(list1[i]["ID"]==int(id)):
+      print("Student "+str(list1[i]["ID"])+" was removed")
+      return list1.remove(list1[i])
+  print("Student ID was not found")
+#-----------------------------------------
+#7)
+def calculate_Average_GPA(list1,avarage=0.0):
+  for i in range(len(list1)):
+    avarage+=list1[i]["GPA"]
+  return avarage/len(list1)
+#-----------------------------------------
+#8)
+def topStudent(list1,t):
+  tuple1=[]
+  list2=list1.copy()
+  for i in range(t):
+    for j in range(len(list2)):
+      for k in range(j+1,len(list2)):
+        if list2[k]["GPA"]>list2[j]["GPA"]:
+          max=k
+        else:
+          max=j
+    tuple1.append(list2[max]["Name"])
+    list2.remove(list2[max])
+    max=0
+  rtyple=tuple(tuple1)
+  return rtyple
 
-list1=[{"ID":1,"Name":"1","Age":2,"Major":"3","GPA":4},{"ID":2,"Name":"1","Age":2,"Major":"3","GPA":5}]
+list1=[{"ID":1,"Name":"n1","Age":2,"Major":"3","GPA":4},{"ID":2,"Name":"n2","Age":2,"Major":"3","GPA":5}]
 print("""
 1. Get Student by ID
 2. Get All Students
@@ -92,10 +123,18 @@ while(choice!="9"):
     add_Student(list1,name,int(age),major,gpa)
   if(choice=="5"):
     print(commonMajor(list1))
-  # if(choice=="6"):
-
-  # if(choice=="7"):
-
-  # if(choice=="8"):
-
+  if(choice=="6"):
+    id=input("Enter an ID: ")
+    while(not id.isnumeric()):
+      id=input("Enter a number: ")
+    delete_Student(list1,id)
+  if(choice=="7"):
+    print("Avarage GPA= "+str(calculate_Average_GPA(list1)))
+  if(choice=="8"):
+    t=input('enter nb of top students: ')
+    while not t.isnumeric() or int(t)>len(list1):
+      t=input('Please enter a positive nb which is less or equal to '+str(len(list1))+': ')
+    print(topStudent(list1,int(t)))
+  if(choice=="9"):
+    print("Thank you for using our app!")
 
