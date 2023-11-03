@@ -1,1 +1,101 @@
+#1)
+def get_Student_By_ID(list1,id):
+  for i in range(len(list1)):
+    #print(list(list1[i].keys())[0])
+    #print(list1[i]["ID"])
+    if(list1[i]["ID"]==int(id)):
+      return list1[i]
+  return "Student ID was not found"
+#-----------------------------------------
+#2)
+def get_All_Student(list1):
+  allS=[]
+  if(len(list1)!=0):
+    for i in range(len(list1)):
+    #print(list(list1[i].keys())[0])
+    #print(list1[i]["ID"])
+      #print(list1[i])
+      allS.append(list1[i])
+    return allS
+
+  else:
+    return "No student"
+#-----------------------------------------
+#3)
+def get_Students_By_Major(list1,major,counter3=0):
+  for i in range(len(list1)):
+    #print(list(list1[i].keys())[0])
+    #print(list1[i]["ID"])
+    if(list1[i]["Major"]==major):
+      print("Name: "+list1[i]["Name"])
+      counter3+=1
+  if(counter3==0):
+    print("No student in this major")
+#-----------------------------------------
+#4)
+def add_Student(list1,name,age,major,gpa):
+  id=(list1[len(list1)-1]["ID"])+1
+  list1.append({})
+  list1[len(list1)-1]["ID"]=id
+  list1[len(list1)-1]["Name"]=name
+  list1[len(list1)-1]["Age"]=age
+  list1[len(list1)-1]["Major"]=major
+  list1[len(list1)-1]["GPA"]=gpa
+  print(list1[len(list1)-1])
+#-----------------------------------------
+#5)
+def commonMajor(list1):
+  set1={}
+  set1=set(set1)
+  for i in range(len(list1)-1):
+    for j in range(i+1,len(list1)):
+      if list1[i]["Major"]==list1[j]["Major"]:
+        set1.add(list1[i]["Major"])
+  return set1
+
+list1=[{"ID":1,"Name":"1","Age":2,"Major":"3","GPA":4},{"ID":2,"Name":"1","Age":2,"Major":"3","GPA":5}]
+print("""
+1. Get Student by ID
+2. Get All Students
+3. Get Students by Major
+4. Add Student
+5. Find Common Majors
+6. Delete Student
+7. Calculate Average GPA
+8. Get Top Performers
+9. Exit
+- - - - - - - - - - - - - - -
+""")
+# print(list[1]["Name"])
+choice=""
+while(choice!="9"):
+  choice=input("Enter a choice: ")
+  while(not choice.isnumeric()):
+    choice=input("Please enter a positive integer: ")
+  if(choice=="1"):
+    id=input("Enter an ID: ")
+    while(not id.isnumeric()):
+      id=input("Enter a number: ")
+    print(get_Student_By_ID(list1,id))
+  if(choice=="2"):
+    print(get_All_Student(list1))
+  if(choice=="3"):
+    major=input("Enter a major: ")
+    get_Students_By_Major(list1,major)
+  if(choice=="4"):
+    name=input("Enter a name: ")
+    age=input("Enter a age: ")
+    while(not age.isnumeric()):
+      age=input("Please enter an integer: ")
+    major=input("Enter a major: ")
+    gpa=float(input("Enter a gpa: "))
+    add_Student(list1,name,int(age),major,gpa)
+  if(choice=="5"):
+    print(commonMajor(list1))
+  # if(choice=="6"):
+
+  # if(choice=="7"):
+
+  # if(choice=="8"):
+
 
