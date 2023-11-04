@@ -72,7 +72,7 @@ def topStudent(list1,t):
   tuple1=[]
   list2=list1.copy()
   for i in range(t):
-    for j in range(len(list2)):
+    for j in range(len(list2)-1):
       for k in range(j+1,len(list2)):
         if list2[k]["GPA"]>list2[j]["GPA"]:
           max=k
