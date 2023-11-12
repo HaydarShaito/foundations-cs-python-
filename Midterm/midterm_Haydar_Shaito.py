@@ -1,8 +1,13 @@
 #1)
 def addNewTab(title,url):
-    lst.append({"Title",title})
-    lst.append({"URL",url})
-    #print(lst)
+    lst.append([{"Title":title},{"URL":url}])
+    print(lst)
+#2)
+def closeLastTab():
+    lst.remove(lst[-1])
+    print(lst)
+def closeTab(tab):
+    v
 
 #menu
 print("""
@@ -32,6 +37,9 @@ while(choice!="9"):
         addNewTab(title,url)
     if(choice=="2"):
         tabToClose=input("Enter which tab you wish to close: ")
-        while(not tabToClose.isnumeric()):
-            tabToClose=input("Please enter a positive integer: ")
-        closeTab(tabToClose)
+        if(tabToClose==""):
+            closeLastTab()
+        else:
+            while(not tabToClose.isnumeric()):
+                tabToClose=input("Please enter a positive integer: ")
+            closeTab(tabToClose)
