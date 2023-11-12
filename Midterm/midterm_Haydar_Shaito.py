@@ -15,6 +15,8 @@ def closeTab(tab):
     if(tab<len(lst)):
         lst.remove(lst[tab])
         print(lst)
+    else:
+        print("Page does not exist!")
 
 #3)
 #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
@@ -33,8 +35,11 @@ def switchToLastTab():
 
 #5)
 def openNestedTab(tab,title,url):
-    lst[tab].append({"Title":title,"URL":url})
-    print(lst)
+    if(tab<len(lst)):
+        lst[tab].append({"Title":title,"URL":url})
+        print(lst)
+    else:
+        print("Nested page does not exist!")
 
 #menu
 print("""
