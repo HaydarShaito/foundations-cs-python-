@@ -6,7 +6,8 @@ import json
 def addNewTab(title,url):
     lst.append([{"Title":title,"URL":url}])
     print(lst)
-    
+#-------------------------------------------------------
+
 #2)
 def closeLastTab():
     lst.remove(lst[-1])
@@ -17,6 +18,7 @@ def closeTab(tab):
         print(lst)
     else:
         print("Page does not exist!")
+#-------------------------------------------------------
 
 #3)
 #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
@@ -32,6 +34,7 @@ def switchToLastTab():
     soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
     data= soup.find_all("html")
     print(data)
+#-------------------------------------------------------
 
 #4)
 def displayAllTabs():
@@ -43,7 +46,7 @@ def displayAllTabs():
                 print("\t",lst[i][y]["Title"])
         else:
             print(lst[i][0]["Title"])
-            
+ #-------------------------------------------------------           
 
 #5)
 def openNestedTab(tab,title,url):
@@ -52,18 +55,21 @@ def openNestedTab(tab,title,url):
         print(lst)
     else:
         print("Nested page does not exist!")
+#-------------------------------------------------------
 
 #6)
 def clearAllTabs():
     print(lst)
     lst.clear()
     print(lst)
+#-------------------------------------------------------
 
 #7)
 def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-python" and "https://www.youtube.com/watch?v=RQM4BkrNKkA"
     save_file = open(path+"/savefile.json", "w") 
     json.dump(lst, save_file, indent = 6)
     save_file.close() 
+#-------------------------------------------------------
 
 #8)
 def importTabs(path,lst): #link8: "https://www.geeksforgeeks.org/json-load-in-python/"
@@ -71,6 +77,7 @@ def importTabs(path,lst): #link8: "https://www.geeksforgeeks.org/json-load-in-py
     data= json.load(file)
     print(data)
     file.close()
+#-------------------------------------------------------
 
 #menu
 print("""
