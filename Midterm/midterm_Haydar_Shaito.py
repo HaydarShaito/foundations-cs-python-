@@ -52,6 +52,12 @@ def openNestedTab(tab,title,url):
     else:
         print("Nested page does not exist!")
 
+#6)
+def clearAllTabs():
+    print(lst)
+    lst.clear()
+    print(lst)
+
 #menu
 print("""
 1. Open Tab
