@@ -1,14 +1,22 @@
+# from bs4 import BeautifulSoup
+# import requests
 #1)
 def addNewTab(title,url):
-    lst.append([{"Title":title},{"URL":url}])
+    lst.append({"Title":title,"URL":url})
     print(lst)
 #2)
 def closeLastTab():
     lst.remove(lst[-1])
     print(lst)
 def closeTab(tab):
-    lst.remove(lst[tab])
-    print(lst)
+    if(tab<=len(lst)):
+        lst.remove(lst[tab])
+        print(lst)
+def switchTab(tab):
+    page_to_scrape=requests.get(lst[tab]["URL"])
+    soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
+    data= soup.find_all("html")
+    print(data)
 
 #menu
 print("""
@@ -24,7 +32,7 @@ print("""
 """)
 
 #main list
-lst=[[{'Title': 'p1'}, {'URL': 'ee'}], [{'Title': 'p2'}, {'URL': 'ew'}]]
+lst=[{'Title': 'p1','URL': 'ee'}, {'Title': 'p2','URL': 'ew'}]
 #choice loop
 choice=""
 while(choice!="9"):
@@ -44,3 +52,6 @@ while(choice!="9"):
             while(not tabToClose.isnumeric()):
                 tabToClose=input("Please enter a positive integer: ")
             closeTab(int(tabToClose))
+    if(choice=="3"):
+        tabToSwitch=input("Enter which tab: ")
+        switchTab(tabToSwitch)
