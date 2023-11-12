@@ -33,6 +33,16 @@ def switchToLastTab():
     data= soup.find_all("html")
     print(data)
 
+#4)
+def displayAllTabs():
+    for i in range(len(lst)):
+        if(len(lst[i])>1):
+            for y in range(len(lst[i])):
+                print("FF")
+        else:
+            print("GG")
+            
+
 #5)
 def openNestedTab(tab,title,url):
     if(tab<len(lst)):
@@ -55,7 +65,7 @@ print("""
 """)
 
 #main list
-lst=[[{'Title': 'p1','URL': 'ee'}], [{'Title': 'p2','URL': 'ew'}]]
+lst=[[{'Title': 'p1','URL': 'ee'},2], [{'Title': 'p2','URL': 'ew'}]]
 #choice loop
 choice=""
 while(choice!="9"):
