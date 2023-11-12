@@ -75,7 +75,10 @@ while(choice!="9"):
     if(choice=="4"):
         print()
     if(choice=="5"):
-        print()
+        parentTab=input("Enter a command: ")
+        while(not parentTab.isnumeric()):
+            parentTab=input("Please enter a positive integer: ")
+        openNestedTab(parentTab)
     # if(choice=="6"):
     # if(choice=="7"):
     # if(choice=="8"):
