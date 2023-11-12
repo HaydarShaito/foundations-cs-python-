@@ -1,5 +1,4 @@
-#link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
-# from bs4 import BeautifulSoup
+# from bs4 import BeautifulSoup #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
 # import requests
 
 #1)
@@ -111,6 +110,9 @@ while(choice!="9"):
         openNestedTab(int(parentTab),title,url)
     if(choice=="6"):
         clearAllTabs()
-    # if(choice=="7"):
+    if(choice=="7"):
+        filePath= input("Enter a file path: ")
+        saveTabs(filePath)
+
     # if(choice=="8"):
     # if(choice=="9"):
