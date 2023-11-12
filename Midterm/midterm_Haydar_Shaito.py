@@ -4,7 +4,7 @@ import requests
 
 #1)
 def addNewTab(title,url):
-    lst.append({"Title":title,"URL":url})
+    lst.append([{"Title":title,"URL":url}])
     print(lst)
     
 #2)
@@ -12,23 +12,28 @@ def closeLastTab():
     lst.remove(lst[-1])
     print(lst)
 def closeTab(tab):
-    if(tab<=len(lst)):
+    if(tab<len(lst)):
         lst.remove(lst[tab])
         print(lst)
 
 #3)
 #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
 def switchTab(tab):
-    page_to_scrape=requests.get(lst[tab]["URL"])
-    soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
-    data= soup.find_all("html")
-    print(data)
+    for i in range(len(lst[tab])):
+        page_to_scrape=requests.get(lst[tab][i]["URL"])
+        soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
+        data= soup.find_all("html")
+        print(data)
 
 def switchToLastTab():
     page_to_scrape=requests.get(lst[-1]["URL"])
     soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
     data= soup.find_all("html")
     print(data)
+
+#5)
+def openNestedTab(tab):
+
 
 #menu
 print("""
@@ -44,7 +49,7 @@ print("""
 """)
 
 #main list
-lst=[{'Title': 'p1','URL': 'ee'}, {'Title': 'p2','URL': 'ew'}]
+lst=[[{'Title': 'p1','URL': 'ee'}], [{'Title': 'p2','URL': 'ew'}]]
 #choice loop
 choice=""
 while(choice!="9"):
