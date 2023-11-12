@@ -9,3 +9,10 @@ print("""
 8. Import Tabs
 9. Exit
 """)
+
+choice=""
+while(choice!="9"):
+    choice=input("Enter a command: ")
+    while(not choice.isnumeric()):
+        choice=input("Please enter a positive integer: ")
+    
