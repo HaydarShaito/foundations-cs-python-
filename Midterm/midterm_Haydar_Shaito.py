@@ -1,6 +1,6 @@
 #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
-from bs4 import BeautifulSoup
-import requests
+# from bs4 import BeautifulSoup
+# import requests
 
 #1)
 def addNewTab(title,url):
@@ -32,8 +32,9 @@ def switchToLastTab():
     print(data)
 
 #5)
-def openNestedTab(tab):
-
+def openNestedTab(tab,title,url):
+    lst[tab].append({"Title":title,"URL":url})
+    print(lst)
 
 #menu
 print("""
@@ -80,10 +81,12 @@ while(choice!="9"):
     if(choice=="4"):
         print()
     if(choice=="5"):
-        parentTab=input("Enter a command: ")
+        parentTab=input("Enter an index: ")
         while(not parentTab.isnumeric()):
             parentTab=input("Please enter a positive integer: ")
-        openNestedTab(parentTab)
+        title=input("Enter the page title: ")
+        url=input("Enter the page URL: ")
+        openNestedTab(int(parentTab),title,url)
     # if(choice=="6"):
     # if(choice=="7"):
     # if(choice=="8"):
