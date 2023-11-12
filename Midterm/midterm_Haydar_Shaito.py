@@ -64,6 +64,13 @@ def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-pytho
     json.dump(lst, save_file, indent = 6)
     save_file.close() 
 
+#8)
+def importTabs(path): #link8: "https://www.geeksforgeeks.org/json-load-in-python/"
+    file= open(path,)
+    data= json.load(file)
+    print(data)
+    file.close()
+
 #menu
 print("""
 1. Open Tab
