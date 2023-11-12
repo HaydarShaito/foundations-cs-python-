@@ -100,6 +100,7 @@ choice=""
 while(choice!="9"):
     choice=input("Enter a command: ")
     #make sure to enter a positive nb
+    
     while(not choice.isnumeric()):
         choice=input("Please enter a positive integer: ")
     if(choice=="1"):
