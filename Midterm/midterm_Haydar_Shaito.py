@@ -103,7 +103,8 @@ while(choice!="9"):
         title=input("Enter the page title: ")
         url=input("Enter the page URL: ")
         openNestedTab(int(parentTab),title,url)
-    # if(choice=="6"):
+    if(choice=="6"):
+        clearAllTabs()
     # if(choice=="7"):
     # if(choice=="8"):
     # if(choice=="9"):
