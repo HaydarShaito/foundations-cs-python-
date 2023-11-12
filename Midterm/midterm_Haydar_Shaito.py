@@ -26,7 +26,7 @@ def switchTab(tab):
     for i in range(len(lst[tab])):
         page_to_scrape=requests.get(lst[tab][i]["URL"])
         soup = BeautifulSoup(page_to_scrape.text, 'html.parser')
-        data= soup.find_all("html")
+        data= soup.find_all("html")#print everything inside html /html
         print(data)
 
 def switchToLastTab():
