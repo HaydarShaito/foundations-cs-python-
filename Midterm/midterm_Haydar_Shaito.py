@@ -1,5 +1,5 @@
-# from bs4 import BeautifulSoup #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
-# import requests
+from bs4 import BeautifulSoup #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
+import requests
 import json
 
 #1)
@@ -35,6 +35,7 @@ def switchToLastTab():
 
 #4)
 def displayAllTabs():
+    print(lst)
     for i in range(len(lst)):
         if(len(lst[i])>1):
             print("Tab",str(i)+":")
@@ -65,7 +66,7 @@ def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-pytho
     save_file.close() 
 
 #8)
-def importTabs(path): #link8: "https://www.geeksforgeeks.org/json-load-in-python/"
+def importTabs(path,lst): #link8: "https://www.geeksforgeeks.org/json-load-in-python/"
     file= open(path,)
     data= json.load(file)
     print(data)
@@ -129,5 +130,6 @@ while(choice!="9"):
         saveTabs(filePath)
     if(choice=="8"):
         filePath= input("Enter a file path: ")
-        importTabs(filePath)
-    # if(choice=="9"):
+        importTabs(filePath,lst)
+    if(choice=="9"):
+        print("Thank you for using my app!")
