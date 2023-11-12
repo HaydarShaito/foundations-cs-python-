@@ -1,5 +1,6 @@
 # from bs4 import BeautifulSoup #link3: "https://stackoverflow.com/questions/47047998/printing-specific-html-values-with-python"
 # import requests
+import json
 
 #1)
 def addNewTab(title,url):
@@ -56,6 +57,12 @@ def clearAllTabs():
     print(lst)
     lst.clear()
     print(lst)
+
+#7)
+def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-python" and "https://www.youtube.com/watch?v=RQM4BkrNKkA"
+    save_file = open(path+"/savefile.json", "w") 
+    json.dump(lst, save_file, indent = 6)
+    save_file.close() 
 
 #menu
 print("""
