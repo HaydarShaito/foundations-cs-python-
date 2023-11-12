@@ -7,7 +7,8 @@ def closeLastTab():
     lst.remove(lst[-1])
     print(lst)
 def closeTab(tab):
-    v
+    lst.remove(lst[tab])
+    print(lst)
 
 #menu
 print("""
@@ -23,7 +24,7 @@ print("""
 """)
 
 #main list
-lst=[]
+lst=[[{'Title': 'p1'}, {'URL': 'ee'}], [{'Title': 'p2'}, {'URL': 'ew'}]]
 #choice loop
 choice=""
 while(choice!="9"):
@@ -42,4 +43,4 @@ while(choice!="9"):
         else:
             while(not tabToClose.isnumeric()):
                 tabToClose=input("Please enter a positive integer: ")
-            closeTab(tabToClose)
+            closeTab(int(tabToClose))
