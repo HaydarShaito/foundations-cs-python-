@@ -38,9 +38,9 @@ def displayAllTabs():
     for i in range(len(lst)):
         if(len(lst[i])>1):
             for y in range(len(lst[i])):
-                print("FF")
+                print(lst[i][y]["Title"])
         else:
-            print("GG")
+            print(lst[i][0]["Title"])
             
 
 #5)
@@ -65,7 +65,7 @@ print("""
 """)
 
 #main list
-lst=[[{'Title': 'p1','URL': 'ee'},2], [{'Title': 'p2','URL': 'ew'}]]
+lst=[[{'Title': 'p1','URL': 'ee'},{'Title': 'p2','URL': 'ee'}], [{'Title': 'p3','URL': 'ew'}]]
 #choice loop
 choice=""
 while(choice!="9"):
