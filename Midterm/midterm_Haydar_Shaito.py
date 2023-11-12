@@ -30,3 +30,8 @@ while(choice!="9"):
         title=input("Enter the page title: ")
         url=input("Enter the page URL: ")
         addNewTab(title,url)
+    if(choice=="2"):
+        tabToClose=input("Enter which tab you wish to close: ")
+        while(not tabToClose.isnumeric()):
+            tabToClose=input("Please enter a positive integer: ")
+        closeTab(tabToClose)
