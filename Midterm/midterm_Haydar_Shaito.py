@@ -37,8 +37,9 @@ def switchToLastTab():
 def displayAllTabs():
     for i in range(len(lst)):
         if(len(lst[i])>1):
+            print("Tab",str(i)+":")
             for y in range(len(lst[i])):
-                print(lst[i][y]["Title"])
+                print("\t",lst[i][y]["Title"])
         else:
             print(lst[i][0]["Title"])
             
