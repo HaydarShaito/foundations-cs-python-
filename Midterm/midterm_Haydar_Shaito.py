@@ -84,7 +84,7 @@ while(choice!="9"):
                 tabToSwitch=input("Please enter a positive integer: ")
             switchTab(int(tabToSwitch))
     if(choice=="4"):
-        print()
+        displayAllTabs()
     if(choice=="5"):
         parentTab=input("Enter an index: ")
         while(not parentTab.isnumeric()):
