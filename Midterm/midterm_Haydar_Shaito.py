@@ -75,7 +75,7 @@ def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-pytho
 def importTabs(path,lst): #link8: "https://www.geeksforgeeks.org/json-load-in-python/"
     file= open(path,)
     data= json.load(file)
-    print(data)
+    print(data)#print file data
     file.close()
 #-------------------------------------------------------
 
