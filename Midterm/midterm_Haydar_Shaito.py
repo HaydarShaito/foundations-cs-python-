@@ -66,7 +66,7 @@ def clearAllTabs():
 
 #7)
 def saveTabs(path): #link:7: "https://www.javatpoint.com/save-json-file-in-python" and "https://www.youtube.com/watch?v=RQM4BkrNKkA"
-    save_file = open(path+"/savefile.json", "w") 
+    save_file = open(path+"/savefile.json", "w") #create new json file in path
     json.dump(lst, save_file, indent = 6)
     save_file.close() 
 #-------------------------------------------------------
