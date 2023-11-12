@@ -120,6 +120,7 @@ while(choice!="9"):
     if(choice=="7"):
         filePath= input("Enter a file path: ")
         saveTabs(filePath)
-
-    # if(choice=="8"):
+    if(choice=="8"):
+        filePath= input("Enter a file path: ")
+        importTabs(filePath)
     # if(choice=="9"):
