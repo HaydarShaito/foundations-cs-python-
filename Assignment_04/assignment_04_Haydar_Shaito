@@ -1,0 +1,97 @@
+class Task:
+    task_id=0
+    def _init_(self,description,priority):
+        self.__description=description
+        self.__priority=priority
+        self.__completed=False
+        self.__next=None
+        Task.task_id+=1
+        self.id=Task.task_id
+    def getDescription(self):
+        return self.__description
+    def setDescription(self,description):
+        self.__description=description
+    def getPriority(self):
+        return self.__priority
+    def setPriority(self,priority):
+        self.__priority=priority
+    # def getTaskId(self):
+    #     return self.__id
+    # def setTaskId(self,task_id):
+    #     self.__id=task_id
+    def getCompleted(self):
+        return self.__completed
+    def setCompleted(self,completed):
+        self.__completed=completed
+    def getNext(self):
+        return self.__next
+    def setNext(self,new_next):
+        self.__next=new_next
+class TaskManager:
+    def _init_(self):
+        self.header=None
+        self.size=0
+    def task_queue(self,description,priority):
+        t=Task(description,priority)
+        print(t.id)
+        if self.size==0:
+            self.header=t
+            self.size+=1
+        else:
+            if (t.getPriority() > self.header.getPriority()):
+              t.setNext(self.header)
+              self.header = t
+              self.size += 1
+            else:
+              current=self.header
+              previous=current
+              while current!=None and current.getPriority()>=t.getPriority():
+                  # print(current.getPriority())
+                  # print(t.getPriority())
+                  previous=current
+                  current=current.getNext()
+              previous.setNext(t)
+              t.setNext(current)
+              self.size+=1
+    def findId(self,id):
+        current=self.header
+        print("test")
+        print(current.id)
+        o_id=current.id
+        while o_id!=id and current!=None:
+            current=current.getNext()
+            o_id=current.id
+        if o_id==id:
+            print("desc was",current.getDescription())
+        else:
+            print('id was not found')
+    def find_Highest_P(self):
+        current=self.header
+        # highest_task=Task
+        while (current.getNext() != None ):
+          current2 = current
+          while (current.next != None ):
+              if current2.getPriority()>current.getPriority():
+                  highest_task=current2
+          current = current.next
+class History:
+    def _init_(self):
+      self.header = None
+      self.size = 0
+    def push(self, t):
+      t.next = self.header
+      self.header = t
+      self.size += 1
+taskm=TaskManager()
+# t=Task(5,4)
+# t1=Task(3,2)
+# t2=Task(1,4)
+# t3=Task(1,4)
+# t3=Task(1,4)
+# print(t3.task_id)
+taskm.task_queue(5,4)
+taskm.task_queue(2,5)
+taskm.task_queue(6,1)
+taskm.findId(3)
+ht=History()
+ht.push()
