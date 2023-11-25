@@ -1,12 +1,13 @@
 class Task:
     task_id=0
-    def _init_(self,description,priority):
+    def __init__(self,description,priority):
         self.__description=description
         self.__priority=priority
         self.__completed=False
         self.__next=None
         Task.task_id+=1
         self.id=Task.task_id
+        
     def getDescription(self):
         return self.__description
     def setDescription(self,description):
@@ -28,20 +29,22 @@ class Task:
     def setNext(self,new_next):
         self.__next=new_next
 class TaskManager:
-    def _init_(self):
+    def __init__(self):
         self.header=None
         self.size=0
     def task_queue(self,description,priority):
         t=Task(description,priority)
-        print(t.id)
+        #print(t.id)
         if self.size==0:
             self.header=t
             self.size+=1
+            print("Task"+str(t.id),"(Priority:",t.getPriority(),"/Description:",t.getDescription(),") was added")
         else:
             if (t.getPriority() > self.header.getPriority()):
               t.setNext(self.header)
               self.header = t
               self.size += 1
+              print("Task"+str(t.id),"(Priority:",t.getPriority(),"/Description:",t.getDescription(),") was added")
             else:
               current=self.header
               previous=current
@@ -53,45 +56,115 @@ class TaskManager:
               previous.setNext(t)
               t.setNext(current)
               self.size+=1
-    def findId(self,id):
-        current=self.header
-        print("test")
-        print(current.id)
-        o_id=current.id
-        while o_id!=id and current!=None:
-            current=current.getNext()
+              print("Task"+str(t.id),"(Priority:",t.getPriority(),"/Description:",t.getDescription(),") was added")
+        
+    def findId(self,user_id):
+        if taskm.size!=0:
+            current=self.header
             o_id=current.id
-        if o_id==id:
-            print("desc was",current.getDescription())
+            while current!=None:
+                if(o_id==user_id):
+                    break
+                #print("test")
+                current=current.getNext()
+                if current!= None:
+                    o_id=current.id 
+            
+            if o_id==user_id:
+                print("Task"+str(user_id)+" description:",current.getDescription())
+            else:
+                print('id was not found')
         else:
-            print('id was not found')
-    def find_Highest_P(self):
+            print("Task manger is empty!")
+    def displaying_all_tasks(self):
         current=self.header
-        # highest_task=Task
-        while (current.getNext() != None ):
-          current2 = current
-          while (current.next != None ):
-              if current2.getPriority()>current.getPriority():
-                  highest_task=current2
-          current = current.next
+        #counter=1
+        while current!=None:
+            #print(str(counter)+": Task"+" description is",current.getDescription())
+            print("Task"+str(current.id),"(Priority:",current.getPriority(),"/Description:",current.getDescription(),")")
+            #counter+=1
+            current=current.getNext()
+    # def deleteFirst(self):
+    #     self.header=self.header.getNext()
+    #     self.size-=1
+    def print_not_completed_tasks(self):
+        current=self.header
+        a=''
+        while current!=None:
+            if current.getCompleted()==False:
+                print("Task",current.id, "is not compelte")
+                a='1'
+            current=current.getNext()
+        #print(a,end='')
+        if a=='':
+            print('all task are true')
+        else:
+            print()
 class History:
-    def _init_(self):
+    def __init__(self):
       self.header = None
       self.size = 0
-    def push(self, t):
-      t.next = self.header
-      self.header = t
-      self.size += 1
+    def push(self, t:Task):
+        if(taskm.size==0):
+            print("Task manger is empty!")
+        else:
+            while t!=None:
+                if t.getCompleted()!=True:
+                    break
+                t=t.getNext()
+            if t!=None:
+                t.next = self.header
+                self.header = t
+                self.size += 1
+                print("Task"+str(t.id),"(Priority:",t.getPriority(),"/Description:",t.getDescription(),") is compelte")
+                t.setCompleted(True)
+            else:
+                print("All Task manger tasks are complete!")
+            #taskm.deleteFirst()
+print("""
+1. Adding a new task to the task manager.
+2. Getting a task from the queue given a task id
+3. Marking the highest priority task as completed and putting
+it in the task history.
+4. Displaying all tasks in order of priority.
+5. Displaying only the tasks that are not completed.
+6. Displaying the last completed task.
+7. Exit
+""")
+choice=""
 taskm=TaskManager()
-# t=Task(5,4)
-# t1=Task(3,2)
-# t2=Task(1,4)
-# t3=Task(1,4)
-# t3=Task(1,4)
-# print(t3.task_id)
 taskm.task_queue(5,4)
 taskm.task_queue(2,5)
 taskm.task_queue(6,1)
-taskm.findId(3)
 ht=History()
-ht.push()
+while(choice!="7"):
+    choice= input("Enter a choice: ")
+    if(choice=="1"):
+        user_desc=input("Enter task description: ")
+        while 1==1:
+            user_prio=input("Enter task priority: ")
+            try:
+                user_prio=int(user_prio)
+                break
+            except:
+                user_prio=input("Enter task priority: ")
+                continue
+        taskm.task_queue(user_desc,int(user_prio))
+    if(choice=="2"):
+        user_id=input("Enter an ID: ")
+        while not user_id.isnumeric():
+            user_id=input("Enter a positive integer: ")
+        taskm.findId(int(user_id))
+    if(choice=="3"):
+        ht.push(taskm.header)
+    if(choice=="4"):
+        taskm.displaying_all_tasks()
+    if(choice=="5"):
+        taskm.print_not_completed_tasks()
+    if(choice=="6"):
+        if(ht.size==0):
+            print("None of the tasks are compele!")
+        else:
+            print("The last compeleted task is: Task"+ str(ht.header.id))
+    if(choice=="7"):
+        print("Thank you for using the app!")
