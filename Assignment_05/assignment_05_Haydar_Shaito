@@ -1,0 +1,218 @@
+#Q1)
+
+class FNode:    
+    def _init_(self,name,family,age):
+        # self.name=name
+        # self.family=family
+        # self.Birth=age
+        self.data={'Name':name,'Family':family,'Birth':age}
+        self.children=[]
+        self.parent=None
+class FTree:
+    lst=[]
+    def _init_(self):
+        self.root=FNode('A2','2B','1992-6-11')
+    def Search(self,s,node):
+        if node==None:
+            print(str(s.data['Name']),'was not found')
+            return None
+        elif s.data==node.data:
+            print(str(s.data['Name']),'was found')
+            return node
+        else:
+            for child in node.children:
+                found_node= self.Search(s,child)
+                if found_node is not None:
+                    # print(found_node.data,'was found')
+                    return found_node
+    def SearchP(self,s,node):
+        if node==None:
+            return None
+        elif s.data==node.data:
+            return node
+        else:
+            for child in node.children:
+                found_node= self.SearchP(s,child)
+                if found_node is not None:
+                    # print(found_node.data,'was found')
+                    return found_node
+    def addchild(self,parent,child_name,child_family,child_age):
+        if child_age<=parent.data['Birth']:
+            print('child should not be older than the parent @')
+        else:
+            parent=self.SearchP(parent,self.root)
+            if parent is not None:
+                p=FNode(child_name,child_family,child_age)
+                parent.children.append(p)
+                p.parent=parent
+                print(child_name,'was added')
+            else:
+                print('parent was not found')
+    # def DisplaySortedBD(self):
+    #     current=self.root
+    #     lst=[]
+    #     while current!=None:
+    #         lst.append(current.data['Birth'])
+    #         current=current.children
+    #     for i in range(len(lst)-1):
+    #         for j in range(i,len(lst)):
+    #             if lst[i]>=lst[j]:
+    #                 lst[] no prev~
+    def getDate(self,node):
+        if node==None:
+            return
+        else:
+            # if node==self.root:
+            #     self.lst.append(node.data['Birth'])
+            self.lst.append(node.data['Birth'])
+            for child in node.children:
+                self.getDate(child)
+                # if found_node is not None:
+                #     # print(found_node.data,'was found')
+                #     return found_node
+    def displaySortedBD(self):
+        self.getDate(self.root)
+        for i in range(len(self.lst)-1):
+            for j in range(i+1,len(self.lst)):
+                if self.lst[i]<self.lst[j]:
+                    self.lst[j],self.lst[i]=self.lst[i],self.lst[j]
+        self.lst=self.lst[::-1]
+
+        print(self.lst)
+        self.lst=[]
+    def GetParent(self,a):
+        lst2=[]
+        a=self.SearchP(a,self.root)
+        if a is not None:
+            while a !=None:
+                lst2.append(a)
+                a=a.parent
+            # for i in range(len(lst2)):
+            #     print(lst2[i].data['Name'])
+            return lst2
+        else:
+            print(a.data['Name'],'was not found')
+    # def displayTree(self):
+    #     current=self.root
+    #     while current !=[]:
+    #         print(str(current.data))
+    #         current=current.children
+    def findRelationship(self,a,b):
+        lst_a=[]
+        lst_b=[]
+        lst_a=self.GetParent(a)
+        lst_b=self.GetParent(b)
+        for i in range(len(lst_a)):
+            print(lst_a[i].data['Name'])
+        for i in range(len(lst_b)):
+            print(lst_b[i].data['Name'])
+        if len(lst_a)<len(lst_b):
+            min_lst=lst_a
+            max_lst=lst_b
+        else:
+            min_lst=lst_b
+            max_lst=lst_a
+        if lst_a==[] or lst_b==[]:
+            print('one of them does not exist')
+        else:
+            counter=0
+            if lst_a[0]==lst_b[0]:
+                print('same person')
+            try:
+
+                if lst_a[1]==lst_b[1]:
+                    print('they are brothers')
+            finally:
+                    for i in range(1,len(max_lst)):
+                        if min_lst[0]==max_lst[i]:
+                            counter+=i
+                            break
+                    if counter==0:
+                        print('they are not directly related')
+                    elif counter==1:
+                        print(min_lst[0].data['Name'],'is the father of',max_lst[0].data['Name'])
+
+                    else:
+                        print(min_lst[0].data['Name'],'is the',counter-1,' times grand father of',max_lst[0].data['Name'])
+                
+
+def main():
+    print('''
+1. Add Family Member
+2. Display Sorted Birthdays
+3. Find Relationship
+4. Visualize Family Tree
+5. Count Same First Names
+6. Exit
+- - - - - - - - - - - - - - -
+    ''')
+    tree=FTree()
+    choice=''
+    tree.addchild(tree.root,"2","1","1992-6-15")
+    a=FNode("2","1","1992-6-15")
+    tree.addchild(a,"ha","ba","1992-6-18")
+    c=FNode("ha","ba","1992-6-18")
+    tree.addchild(tree.root,"4","3","1992-6-21")
+    b=FNode("4","3","1992-6-21")
+    while choice!='6':
+        choice=input('please enter a choice : ')
+        if choice=='1':
+            child_name=input('Enter a name : ')
+            child_family=input('Enter a family : ')
+            child_birthD=input('Enter a birthdate(day) : ')
+            while not child_birthD.isnumeric() or int(child_birthD)>31 or 1>int(child_birthD):
+                child_birthD=input('Enter a birthdate(day) 1-31 : ')
+            child_birthM=input('Enter a birthdate(month) : ')
+            while not child_birthM.isnumeric() or int(child_birthM)>12 or 1>int(child_birthM):
+                child_birthM=input('Enter a birthdate(month) 1-12 : ')
+            child_birthY=input('Enter a birthdate(year) : ')
+            while not child_birthY.isnumeric() or int(child_birthY)>2024:
+                child_birthY=input('Enter a birthdate(year) < 2024 : ')
+            child_birth=child_birthY+'-'+child_birthM+'-'+child_birthD
+            # print(child_birth)
+            parent_name=input('Enter a name for the parent : ')
+            parent_family=input('Enter a family for the parent : ')
+            parent_birth=input('Enter a birthdate for the parent : ')
+            parent=FNode(parent_name,parent_family,parent_birth)
+            tree.addchild(parent,child_name,child_family,child_birth)
+            a=FNode(child_name,child_family,child_birth)
+            tree.GetParent(a)
+        if choice=='2':
+            tree.displaySortedBD()
+        if choice=='3':
+            #member1
+            child_name=input('Enter member1 name : ')
+            child_family=input('Enter member1 family : ')
+            child_birthD=input('Enter member1 birthdate(day) : ')
+            while not child_birthD.isnumeric() or int(child_birthD)>31 or 1>int(child_birthD):
+                child_birthD=input('Enter member1 birthdate(day) 1-31 : ')
+            child_birthM=input('Enter member1 birthdate(month) : ')
+            while not child_birthM.isnumeric() or int(child_birthM)>12 or 1>int(child_birthM):
+                child_birthM=input('Enter member1 birthdate(month) 1-12 : ')
+            child_birthY=input('Enter member1 birthdate(year) : ')
+            while not child_birthY.isnumeric() or int(child_birthY)>2024:
+                child_birthY=input('Enter member1 birthdate(year) < 2024 : ')
+            child_birth=child_birthY+'-'+child_birthM+'-'+child_birthD
+
+            f1=FNode(child_name,child_family,child_birth)
+
+            child_name2=input('Enter member2 name : ')
+            child_family2=input('Enter member2 family : ')
+            child_birthD2=input('Enter member2 birthdate(day) : ')
+            while not child_birthD2.isnumeric() or int(child_birthD2)>31 or 1>int(child_birthD2):
+                child_birthD2=input('Enter member2 birthdate(day) 1-31 : ')
+            child_birthM2=input('Enter member2 birthdate(month) : ')
+            while not child_birthM2.isnumeric() or int(child_birthM2)>12 or 1>int(child_birthM2):
+                child_birthM2=input('Enter member2 birthdate(month) 1-12 : ')
+            child_birthY2=input('Enter member2 birthdate(year) : ')
+            while not child_birthY2.isnumeric() or int(child_birthY2)>2024:
+                child_birthY2=input('Enter member2 birthdate(year) < 2024 : ')
+            child_birth2=child_birthY2+'-'+child_birthM2+'-'+child_birthD2
+
+            f2=FNode(child_name2,child_family2,child_birth2)
+
+            tree.findRelationship(f1,f2)
+        if choice=='4':
+            tree.findRelationship(c,b)
+
+main()
